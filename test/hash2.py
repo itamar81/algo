@@ -1,5 +1,7 @@
+
+
 class HashTable:
-    def __init__(self,capacity = 31):
+    def __init__(self,capacity = 19):
         self.data = [None] * capacity
         self.capacity = capacity
     
@@ -11,9 +13,10 @@ class HashTable:
         if self.data[index] is None:
             self.data[index] = []
         else:
-            for i,val in enumerate(self.data[index]):
-                if val[0] == key:
-                    return False
+            for item in self.data[index]:
+                if item[0] == key:
+                    item[1] = value
+                    return 
         self.data[index].append([key,value])
     
     def get_item_by_key(self,key):
@@ -34,14 +37,24 @@ class HashTable:
             if item:
                 for k in item:
                     all_keys.append(k[0])
-        return all_keys            
+        return all_keys         
+
+    def get_all(self):
+        all = []
+        for item in self.data:
+            if item:
+                for i in item:
+                    all.append([i[0],i[1]])
+
+        return all   
     
 ht = HashTable()
 ht.insert("dada","aaaaa3232")
 ht.insert("da3da","3232")
-ht.insert("da2da","3232")
+ht.insert("da2da","3232aaaaawrewe3")
 ht.insert("da1da","3232")
 ht.insert("daeda","3232")
+ht.insert(18,"popopop")
 ht.insert("dada","323dasda2")
-print(ht.contains("da2da"))
+print(ht.get_all())
 #print (ht.get_keys())
