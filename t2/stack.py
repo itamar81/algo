@@ -11,21 +11,20 @@ class Stack:
     
     def push(self,value):
         new_node = Node(value)
-        if self.length == 0:
+        if self.top is None:
             self.top = new_node
         else:
             new_node.next = self.top
-            # self.top.next = self.top
-            self.top= new_node
+            self.top = new_node
+        self.length += 1
 
-        self.length +=1
 
     def pop(self):
-        if self.length == 0:
+        if self.length ==0:
             return None
         temp = self.top
-         
-        self.top=self.top.next
+        self.top = self.top.next
+        temp.next=None
         self.length -= 1
         return temp.value
 

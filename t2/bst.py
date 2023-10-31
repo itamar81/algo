@@ -1,47 +1,42 @@
 class Node:
     def __init__(self,value):
         self.value = value
-        self.left = None
+        self.left= None
         self.right = None
-    
+
 class Tree:
     def __init__(self):
-        self.root= None
+        self.root = None
     
-    def _rec_insert(self,current,new_node):
-        if current is None:
+    def _recursive_insert(self,current_node,new_node):
+        if current_node is None:
             return new_node
-        if new_node.value < current.value:
-            current.left = self._rec_insert(current.left,new_node)
+        if  new_node.value<current_node.value:
+            current_node.left =  self._recursive_insert(current_node.left,new_node)
         else:
-            current.right = self._rec_insert(current.right,new_node)
-        
-        return current
+            current_node.right =  self._recursive_insert(current_node.right,new_node)
+        return current_node
+
     def insert(self,value):
-        new_node=Node(value)
-        if self.root == None:
+        new_node = Node(value)
+        if self.root is None:
             self.root = new_node
             return
-        current = self.root
-        self._rec_insert(current,new_node)
+        self._recursive_insert(self.root,new_node)
+
     def _inorder(self,node,arr):
         if node.left is not None:
             self._inorder(node.left,arr)
         arr.append(node.value)
-        if node.right is not None:
+        if node.right:
             self._inorder(node.right,arr)
         return arr
 
-
     def traverse(self):
-        root = self.root
-        arr = []
-        if root is None:
+        if self.root == None:
             return None
-        return self._inorder(root,arr)
-
-
-
+        arr = []
+        return self._inorder(self.root,arr)
 bst = Tree()
 
 bst.insert(5)

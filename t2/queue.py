@@ -5,28 +5,23 @@ class Node:
 
 class Queue:
     def __init__(self):
-        self.length = 0
         self.root = None
         self.last = None
     def insert(self, value):
-        node =Node(value)
-        if self.length == 0:
-            self.root = node
-            self.last = node
-        else:
-            self.last.next = node
-            self.last = node
-        self.length +=1
+        new_node = Node(value)
+        if self.root is None:
+            self.root = self.last =  new_node
+            return
+        self.last.next= new_node
+        self.last = new_node
 
     def pop(self):
-        if self.length == 0:
+        if self.root is None:
             return None
         temp = self.root
-        self.length -= 1
         self.root= self.root.next
-        temp.next = None
+        temp.next= None
         return temp.value
-    
 
 q = Queue()
 q.insert(4)
@@ -38,4 +33,6 @@ print(q.pop())
 print(q.pop())
 print(q.pop())
 print(q.pop())
+print(q.pop())
+q.insert(8)
 print(q.pop())
