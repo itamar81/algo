@@ -11,6 +11,11 @@ class HashTable:
     self.size = size    
   def __hash(self,key):
     return hash(key) % self.size
+  # hashsum =0
+  #for idx , c in enumerate(key):
+  #  hashsum += (idx + len(key)) ** ord(c)
+  # hashsum = hashsum %self.capacity
+  #return hashsum
   
   def print_table(self):
     for i,val in enumerate(self.data_map):
